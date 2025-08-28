@@ -14,4 +14,9 @@ export const SIDEBAR_LINK = [
     href: "/admin/questions",
     icon: "/images/questions.png",
   },
+  {
+    name: "Categories",
+    href: "/admin/categories",
+    icon: "/images/Category.png",
+  },
 ];

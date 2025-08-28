@@ -25,10 +25,24 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-model Pertanyaan {
+model Category {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  soal String @unique
-  score Int
+  name String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  pertanyaan Pertanyaan[]
+}
+
+model Pertanyaan {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  soal String
+  sangat_memuaskan Int
+  memuaskan Int
+  cukup_memuaskan Int
+  kurang_memuaskan Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  categoryId String @db.ObjectId
+  category Category @relation(fields: [categoryId], references: [id])
 }

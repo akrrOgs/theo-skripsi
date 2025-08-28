@@ -26,3 +26,30 @@ export const createUserSchema = z
     message: "Passwords do not match",
     path: ["confPassword"],
   });
+
+export const updateUserSchema = z
+  .object({
+    name: z.string().nonempty("Name is required"),
+    username: z.string().nonempty("Username is required"),
+    role: z.string().nonempty("Role is required"),
+    password: z.string(),
+    confPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confPassword, {
+    message: "Passwords do not match",
+    path: ["confPassword"],
+  });
+
+export const categorySchema = z.object({
+  name: z.string().nonempty("Name is required"),
+});
+
+export const questionsSchema = z.object({
+  title: z.string(),
+  soal: z.string(),
+  sangat_memuaskan: z.number(),
+  memuaskan: z.number(),
+  cukup_memuaskan: z.number(),
+  kurang_memuaskan: z.number(),
+  categoryId: z.string().nonempty("Category is required"),
+});
